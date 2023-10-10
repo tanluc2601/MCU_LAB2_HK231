@@ -95,14 +95,49 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  uint16_t seg7led[2] = {GPIO_PIN_6, GPIO_PIN_7};
+  void clearLed(){
+  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6 | GPIO_PIN_7, GPIO_PIN_SET);
+  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|
+              	  	  	  	GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_SET);
+  }
+
+  void display7SEG(int indexLed, int number){
+  	HAL_GPIO_WritePin(GPIOA, seg7led[indexLed], GPIO_PIN_RESET);
+  	//tao mang de luu cac gia tri cua cac so tu 0 den 9
+  	char led7seg[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+  	//cho bien i chay tu 0 den 6 tuong duong voi 7 doan tren led7doan
+  	//muc dich cua vong lap nay la de bat hoac tat cac led tren led 7 doan
+  	for (int i=0; i < 7; i++){
+  		/*dich bit sang phai de tien hanh and voi bit 1 de xac dinh trang thai led
+  		 0 la bat 1 la tat
+  		 */
+  		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 <<i, (led7seg[number]>>i) & 1);
+
+  	}
+  }
+
   setTimer1(100);
+  setTimer2(50);
+  //int counter = 100;
+  int indexLed = 0; //Tao bien de luu so thu tu den
+  int buffer[2] = {1, 2}; //Tao bien de luu gia tri cua led
   while (1)
   {
 	  // This is exercise 1
 	  if (timer1_flag == 1){
-		  setTimer1(200);
+		  setTimer1(100);
 		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 	  }
+	  if (timer2_flag == 1){
+		  setTimer2(50);
+		  clearLed();
+		  display7SEG(indexLed, buffer[indexLed]);
+		  indexLed++;
+		  if (indexLed > 1) indexLed = 0;
+	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
