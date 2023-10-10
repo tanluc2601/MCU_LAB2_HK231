@@ -98,10 +98,9 @@ int main(void)
   setTimer1(100);
   while (1)
   {
-	  // This is main exercise
+	  // This is exercise 3 to exercise 10
 	  if (timer1_flag == 1){
-		  setTimer1(200);
-		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
 	  }
     /* USER CODE END WHILE */
 
