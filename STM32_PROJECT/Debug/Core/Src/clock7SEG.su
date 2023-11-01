@@ -1,0 +1,4 @@
+clock7SEG.c:15:6:clearLed	8	static
+clock7SEG.c:20:6:display7SEG	32	static
+clock7SEG.c:27:6:update7SEG	16	static
+clock7SEG.c:67:6:updateClockBuffer	4	static

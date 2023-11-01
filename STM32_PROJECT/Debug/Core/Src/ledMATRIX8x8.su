@@ -1,0 +1,6 @@
+ledMATRIX8x8.c:14:6:updateBuffer	24	static
+ledMATRIX8x8.c:21:6:displayLEDMATRIX	56	static
+ledMATRIX8x8.c:38:6:displayLEDMATRIX2	56	static
+ledMATRIX8x8.c:55:6:updateLEDMatrix	16	static
+ledMATRIX8x8.c:148:6:updateLEDMatrix2	16	static
+ledMATRIX8x8.c:241:6:LEDMATRIX_run	16	static
